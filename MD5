@@ -1,0 +1,15 @@
+e38d0b9d4de76e229103e76de7ea04f4 *DESCRIPTION
+9fdfeb11f7ddba6f3aab9aaa6b1ac5dd *NAMESPACE
+5d55454fca74ac12db8d1d74e50a131d *R/ssa20.R
+b80501603dfd29fbf0e94ef16bd67896 *R/ssa2d.R
+4e205244d4ab57ae353c10730ca96617 *R/ssi20.R
+b17abbeca1403cf99bb4a0485b3b304f *R/ssi2d.R
+f03454ee984df73aefeb6ced22e7f163 *man/SPSL-package.Rd
+afb1a0d87360e1877122777a1784cde2 *man/ssa20.Rd
+1f1d3719138f1792e867aa2b3e1bd8b8 *man/ssa2d.Rd
+5df03690a4dba16c25b525cb57883b1a *man/ssa30.Rd
+73336538291b978163dc27c6ce5b5f01 *man/ssa3d.Rd
+17dc4b73373d30dec9018173fb7bba0a *man/ssi20.Rd
+c6b226638e35d4a5e80e3b6619220e0a *man/ssi2d.Rd
+26c813c762c7f4f0283e16fcbdaf91df *man/ssi30.Rd
+4a986ffb1a74cc20748701611b295f5e *man/ssi3d.Rd
