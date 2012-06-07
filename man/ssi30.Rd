@@ -1,17 +1,17 @@
 \name{ssi30}
 \alias{ssi30}
-\title{Site cluster on Square Isotropic 3D lattice with 0-neighborhood}
+\title{Site cluster on Square Isotropic 3D lattice with (1,0)-neighborhood}
 \description{
-\code{ssi30()} function provide a sites labeling of the isotropic cluster on 3D square lattice with von Neumann 0-neighborhood.
+\code{ssi30()} function provides sites labeling of the isotropic cluster on 3D square lattice with von Neumann (1,0)-neighborhood.
 }
 \usage{
 ssi30(x=33, p=0.311608, set=(x^3+1)/2, all=TRUE)
 }
 \arguments{
-\item{x}{ a linear dimension of 3D square percolation lattice. }
-\item{p}{ the relative fractions \code{(0<p)&(p<1)} of accessible sites (occupation probability) for percolation lattice. }
-\item{set}{ a vector containing the linear indexes of sites from initial subset. }
-\item{all}{ logical; if \code{all=TRUE}, mark all sites from initial subset; if \code{all=FALSE}, mark accessible sites from initial subset. }
+\item{x}{a linear dimension of 3D square percolation lattice.}
+\item{p}{the relative fractions \code{(0<p)&(p<1)} of accessible sites (occupation probability) for percolation lattice.}
+\item{set}{a vector containing the linear indexes of sites from initial subset.}
+\item{all}{logical; if \code{all=TRUE}, mark all sites from initial subset; if \code{all=FALSE}, mark accessible sites from initial subset.}
 }
 \value{
 \item{acc}{ 
@@ -23,16 +23,16 @@ if \code{acc[e]==2} then \code{acc[e]} belongs to a sites cluster. }
 \details{
 The percolation is simulated on 3D square lattice with uniformly weighted sites \code{acc} and the constant parameter \code{p}.
 
-The isotropic cluster is formed from the accessible sites connected with initial sites subset. 
+The isotropic cluster is formed from the accessible sites connected with initial sites subset \code{set}. 
 
-To form the cluster iteratively tested the condition \code{acc[set+e]<p} for sites of the von Neumann 0-neighborhood \code{e} for the current cluster perimeter \code{set}.
+To form the cluster the condition \code{acc[set+e]<p} is iteratively tested for sites of the von Neumann (1,0)-neighborhood \code{e} for the current cluster perimeter \code{set}.
 
-Von Neumann 0-neighborhood on 3D square lattice consists of sites, only one coordinate which is different from the current site by one: \code{e=c(-1,} \code{1,} \code{-x,} \code{x,} \code{-x^2,} \code{x^2)}.
+Von Neumann (1,0)-neighborhood on 3D square lattice consists of sites, only one coordinate of which is different from the current site by one: \code{e=c(-1,} \code{1,} \code{-x,} \code{x,} \code{-x^2,} \code{x^2)}.
 
-Forming cluster ends with the exhaustion of accessible sites in von Neumann 0-neighborhood of the current cluster perimeter.
+Forming cluster ends with the exhaustion of accessible sites in von Neumann (1,0)-neighborhood of the current cluster perimeter.
 }
 \seealso{
-\link{ssi20},
+\link{fssi30}, \link{ssi20},
 \link{ssa20}, \link{ssa30},
 \link{ssi2d}, \link{ssi3d}
 }
@@ -40,15 +40,23 @@ Forming cluster ends with the exhaustion of accessible sites in von Neumann 0-ne
 \concept{site percolation}
 \concept{isotropic cluster}
 \concept{von Neumann neighborhood}
-\concept{von Neumann 0-neighborhood}
-\author{Pavel V. Moskalev <moskalefff@gmail.com>}
+\author{Pavel V. Moskalev}
 \examples{
+# Example No.1. Axonometric projection of 3D cluster
 require(lattice)
 set.seed(20120507)
 x <- y <- z <- seq(33)
-cls <- which(ssi30()>1, arr.ind=TRUE)
+cls <- which(ssi30(p=.285)>1, arr.ind=TRUE)
 cloud(cls[,3] ~ cls[,1]*cls[,2],
-      xlim=range(x), ylim=range(y), zlim=range(z), 
-      col=rgb(1,0,0,0.4), xlab="x", ylab="y", zlab="z",
-      main="Isotropic 3D cluster with 0-neighborhood")
+xlim=range(x), ylim=range(y), zlim=range(z), 
+col=rgb(1,0,0,0.4), xlab="x", ylab="y", zlab="z", main.cex=1,
+main="Axonometric projection of\n an isotropic 3D cluster with (1,0)-neighborhood")
+
+# Example No.2. Z=17 slice of 3D cluster
+set.seed(20120507)
+cls <- ssi30(p=.285)
+x <- y <- z <- seq(33)
+image(x, y, cls[,,17], zlim=c(0,2), cex.main=1, 
+main="Z=17 slice of an isotropic 3D cluster with (1,0)-neighborhood")
+abline(h=17, lty=2); abline(v=17, lty=2)
 }

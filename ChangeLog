@@ -1,0 +1,47 @@
+2012-06-07 Version 0.1-6
+
+  A R/fssa20.R
+  A R/fssa2d.R
+  A R/fssi20.R
+  A R/fssi2d.R
+  M man/ssa20.Rd
+  M man/ssa2d.Rd
+  M man/ssa30.Rd
+  M man/ssa3d.Rd
+  M man/ssi20.Rd
+  M man/ssi2d.Rd
+  M man/ssi30.Rd
+  M man/ssi3d.Rd
+  A man/fssa20.Rd
+  A man/fssa2d.Rd
+  A man/fssa30.Rd
+  A man/fssa3d.Rd
+  A man/fssi20.Rd
+  A man/fssi2d.Rd
+  A man/fssi30.Rd
+  A man/fssi3d.Rd
+  M man/SPSL-package.Rd
+  M DESCRIPTION
+  A ChangeLog
+
+Adding 8 new functions and documentation. 
+Updating existing documentation and examples.
+
+2012-05-14 Version 0.1-5
+
+  A R/ssa20.R
+  A R/ssa2d.R
+  A R/ssi20.R
+  A R/ssi2d.R
+  A man/ssa2d.Rd
+  A man/ssa3d.Rd
+  A man/ssi30.Rd
+  A man/ssa20.Rd
+  A man/ssi20.Rd
+  A man/ssi2d.Rd
+  A man/ssa30.Rd
+  A man/ssi3d.Rd
+  A man/SPSL-package.Rd
+  A DESCRIPTION
+
+The initial release contains 8 main functions and documentation.
