@@ -1,3 +1,22 @@
+2012-12-27 Version 0.1-7
+
+  A src/ssTNd.c
+  M R/fssa20.R
+  M R/fssa2d.R
+  M R/fssi20.R
+  M R/fssi2d.R
+  M R/ssa20.R
+  M R/ssa2d.R
+  M R/ssi20.R
+  M R/ssi2d.R
+  M man/SPSL-package.Rd
+  A NAMESPACE
+  M DESCRIPTION
+  M ChangeLog
+
+Added 1 new function.
+Modified 4 existing functions.
+
 2012-06-07 Version 0.1-6
 
   A R/fssa20.R
@@ -24,8 +43,8 @@
   M DESCRIPTION
   A ChangeLog
 
-Adding 8 new functions and documentation. 
-Updating existing documentation and examples.
+Added 8 new functions and documentation. 
+Updated existing documentation and examples.
 
 2012-05-14 Version 0.1-5
 

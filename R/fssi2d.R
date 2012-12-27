@@ -1,4 +1,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# License: GPL-3
+# Package: Site Percolation on Square Lattice (SPSL)
+# Author: Pavel V. Moskalev <moskalefff@gmail.com>
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Function: 
 # fssi2d() and fssi3d() functions calculates the relative 
 # frequency distribution of isotropic 2D & 3D clusters 

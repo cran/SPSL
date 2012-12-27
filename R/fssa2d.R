@@ -1,4 +1,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# License: GPL-3
+# Package: Site Percolation on Square Lattice (SPSL)
+# Author: Pavel V. Moskalev <moskalefff@gmail.com>
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Function: 
 # fssa20() and fssa30() functions calculates the relative 
 # frequency distribution of anisotropic 2D & 3D clusters 

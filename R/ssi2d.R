@@ -1,4 +1,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# License: GPL-3
+# Package: Site Percolation on Square Lattice (SPSL)
+# Author: Pavel V. Moskalev <moskalefff@gmail.com>
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Function: 
 # ssi2d() and ssi3d() functions provide a labeling of 
 # isotropic 2D & 3D clusters with Moore d-neighborhood.
@@ -19,30 +23,31 @@
 ssi2d <- function(x=33, 
                   p0=0.5, p1=p0/2, 
                   set=(x^2+1)/2, all=TRUE) {
+  b <- as.integer(length(set))
   e0 <- c(-1, 1,-x, x)
   e1 <- colSums(matrix(e0[c(
     1,3, 2,3, 1,4, 2,4)], nrow=2))
+  e <- as.integer(c(e0,e1))
+  p0 <- rep(p0, length(e0))
+  p1 <- rep(p1, length(e1))
+  p <- as.double(c(p0,p1))
   acc <- array(runif(x^2), rep(x,2))
-  if (all) acc[set] <- 2
-  else acc[set <- set[acc[set] < p0]] <- 2
   acc[c(1,x),] <- acc[,c(1,x)] <- 1
-  repeat {
-    acc[set <- unique(c(
-      set[acc[set+e0[1]] < p0] +e0[1],
-      set[acc[set+e0[2]] < p0] +e0[2],
-      set[acc[set+e0[3]] < p0] +e0[3],
-      set[acc[set+e0[4]] < p0] +e0[4],
-      set[acc[set+e1[1]] < p1] +e1[1],
-      set[acc[set+e1[2]] < p1] +e1[2],
-      set[acc[set+e1[3]] < p1] +e1[3],
-      set[acc[set+e1[4]] < p1] +e1[4] ))] <- 2
-    if (length(set) < 1) break
+  if (all) {
+    cls <- rep(0L, b + max(p)*x^2) 
+    acc[set] <- 2 
+  } else {
+    cls <- rep(0L, max(p)*x^2) 
+    acc[set <- set[acc[set] < mean(p)]] <- 2
   }
+  cls[seq_along(set)] <- as.integer(set - 1)
+  .Call("ssTNd", p, acc, b, e, cls) 
   return(acc)
 }
 ssi3d <- function(x=33, 
                   p0=0.2, p1=p0/2, p2=p0/3,
                   set=(x^3+1)/2, all=TRUE) {
+  b <- as.integer(length(set))
   e0 <- c(-1, 1,-x, x,-x^2, x^2)
   e1 <- colSums(matrix(e0[c(
     1,3, 2,3, 1,4, 2,4,
@@ -51,39 +56,21 @@ ssi3d <- function(x=33,
   e2 <- colSums(matrix(e0[c(
     1,3,5, 2,3,5, 1,4,5, 2,4,5,
     1,3,6, 2,3,6, 1,4,6, 2,4,6)], nrow=3))
+  e <- as.integer(c(e0,e1,e2))
+  p0 <- rep(p0, length(e0))
+  p1 <- rep(p1, length(e1))
+  p2 <- rep(p2, length(e2))
+  p <- as.double(c(p0,p1,p2))  
   acc <- array(runif(x^3), rep(x,3))
-  if (all) acc[set] <- 2
-  else acc[set <- set[acc[set] < p0]] <- 2
   acc[c(1,x),,] <- acc[,c(1,x),] <- acc[,,c(1,x)] <- 1
-  repeat {
-    acc[set <- unique(c(
-      set[acc[set+e0[1]] < p0] +e0[1],
-      set[acc[set+e0[2]] < p0] +e0[2],
-      set[acc[set+e0[3]] < p0] +e0[3],
-      set[acc[set+e0[4]] < p0] +e0[4],
-      set[acc[set+e0[5]] < p0] +e0[5],
-      set[acc[set+e0[6]] < p0] +e0[6],
-      set[acc[set+e1[1]] < p1] +e1[1],
-      set[acc[set+e1[2]] < p1] +e1[2],
-      set[acc[set+e1[3]] < p1] +e1[3],
-      set[acc[set+e1[4]] < p1] +e1[4],
-      set[acc[set+e1[5]] < p1] +e1[5],
-      set[acc[set+e1[6]] < p1] +e1[6],
-      set[acc[set+e1[7]] < p1] +e1[7],
-      set[acc[set+e1[8]] < p1] +e1[8],
-      set[acc[set+e1[9]] < p1] +e1[9],
-      set[acc[set+e1[10]]< p1] +e1[10],
-      set[acc[set+e1[11]]< p1] +e1[11],
-      set[acc[set+e1[12]]< p1] +e1[12],
-      set[acc[set+e2[1]] < p2] +e2[1],
-      set[acc[set+e2[2]] < p2] +e2[2],
-      set[acc[set+e2[3]] < p2] +e2[3],
-      set[acc[set+e2[4]] < p2] +e2[4],
-      set[acc[set+e2[5]] < p2] +e2[5],
-      set[acc[set+e2[6]] < p2] +e2[6],
-      set[acc[set+e2[7]] < p2] +e2[7],
-      set[acc[set+e2[8]] < p2] +e2[8] ))] <- 2
-    if (length(set) < 1) break
+  if (all) {
+    cls <- rep(0L, b + max(p)*x^3) 
+    acc[set] <- 2 
+  } else {
+    cls <- rep(0L, max(p)*x^3) 
+    acc[set <- set[acc[set] < mean(p)]] <- 2
   }
+  cls[seq_along(set)] <- as.integer(set - 1)
+  .Call("ssTNd", p, acc, b, e, cls)  
   return(acc)
 }

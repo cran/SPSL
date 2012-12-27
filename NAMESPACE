@@ -1,5 +1,5 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
+# Load dynamic libraries (shared object files)
+useDynLib(SPSL)
 
 # Export all names
 exportPattern(".")

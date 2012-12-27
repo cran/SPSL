@@ -1,4 +1,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# License: GPL-3
+# Package: Site Percolation on Square Lattice (SPSL)
+# Author: Pavel V. Moskalev <moskalefff@gmail.com>
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Function: 
 # ssi20() and ssi30() functions provide a labeling of 
 # isotropic 2D & 3D clusters with von Neumann neighborhood.
@@ -17,38 +21,38 @@
 ssi20 <- function(x=33, 
                   p=0.592746, 
                   set=(x^2+1)/2, all=TRUE) {
-  e <- c(-1, 1,-x, x)
+  b <- as.integer(length(set))
+  e <- as.integer(c(-1, 1,-x, x))
+  p <- as.double(rep(p, length(e)))
   acc <- array(runif(x^2), rep(x,2))
-  if (all) acc[set] <- 2
-  else acc[set <- set[acc[set] < p]] <- 2
   acc[c(1,x),] <- acc[,c(1,x)] <- 1
-  repeat {
-    acc[set <- unique(c(
-      set[acc[set+e[1]] < p] +e[1],
-      set[acc[set+e[2]] < p] +e[2],
-      set[acc[set+e[3]] < p] +e[3],
-      set[acc[set+e[4]] < p] +e[4] ))] <- 2
-    if (length(set) < 1) break
+  if (all) {
+    cls <- rep(0L, b + max(p)*x^2) 
+    acc[set] <- 2 
+  } else {
+    cls <- rep(0L, max(p)*x^2) 
+    acc[set <- set[acc[set] < mean(p)]] <- 2
   }
+  cls[seq_along(set)] <- as.integer(set - 1)
+  .Call("ssTNd", p, acc, b, e, cls) 
   return(acc)
 }
 ssi30 <- function(x=33, 
                   p=0.311608, 
                   set=(x^3+1)/2, all=TRUE) {
-  e <- c(-1, 1,-x, x,-x^2, x^2)
+  b <- as.integer(length(set))
+  e <- as.integer(c(-1, 1,-x, x,-x^2, x^2))
+  p <- as.double(rep(p, length(e)))
   acc <- array(runif(x^3), rep(x,3))
-  if (all) acc[set] <- 2
-  else acc[set <- set[acc[set] < p]] <- 2
   acc[c(1,x),,] <- acc[,c(1,x),] <- acc[,,c(1,x)] <- 1
-  repeat {
-    acc[set <- unique(c(
-      set[acc[set+e[1]] < p] +e[1],
-      set[acc[set+e[2]] < p] +e[2],
-      set[acc[set+e[3]] < p] +e[3],
-      set[acc[set+e[4]] < p] +e[4],
-      set[acc[set+e[5]] < p] +e[5],
-      set[acc[set+e[6]] < p] +e[6] ))] <- 2
-    if (length(set) < 1) break
-  }
+  if (all) {
+    cls <- rep(0L, b + max(p)*x^3) 
+    acc[set] <- 2 
+  } else {
+    cls <- rep(0L, max(p)*x^3) 
+    acc[set <- set[acc[set] < mean(p)]] <- 2
+  }  
+  cls[seq_along(set)] <- as.integer(set - 1)
+  .Call("ssTNd", p, acc, b, e, cls)   
   return(acc)
 }
