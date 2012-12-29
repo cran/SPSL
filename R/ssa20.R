@@ -14,25 +14,22 @@
 # set - vector of linear indexes of initial sites subset;
 # all - trigger "Mark all initial sites or accessible only?"
 # Variables:
-# e - linear indexes of sites from 2D & 3D von Neumann neighborhood.
+# e - linear indexes of sites from 2D & 3D von Neumann neighborhood;
+# b - length of initial sites subset.
 # Value:
 # acc - labeled accessibility matrix for the percolation lattice.
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 ssa20 <- function(x=33, 
                   p=runif(4, max=0.9), 
                   set=(x^2+1)/2, all=TRUE) {
-  p <- as.double(p)
-  b <- as.integer(length(set))
   e <- as.integer(c(-1, 1,-x, x))
+  p <- as.double(p)
   acc <- array(runif(x^2), rep(x,2))
+  if (!all) set <- set[acc[set] < mean(p)]
+  b <- as.integer(length(set))
+  cls <- rep(0L, max(p)*x^2 + b*all)
+  acc[set] <- 2 
   acc[c(1,x),] <- acc[,c(1,x)] <- 1
-  if (all) {
-    cls <- rep(0L, b + max(p)*x^2) 
-    acc[set] <- 2 
-  } else {
-    cls <- rep(0L, max(p)*x^2) 
-    acc[set <- set[acc[set] < mean(p)]] <- 2
-  }
   cls[seq_along(set)] <- as.integer(set - 1)
   .Call("ssTNd", p, acc, b, e, cls) 
   return(acc)
@@ -40,18 +37,14 @@ ssa20 <- function(x=33,
 ssa30 <- function(x=33, 
                   p=runif(6, max=0.6), 
                   set=(x^3+1)/2, all=TRUE) {
-  p <- as.double(p)
-  b <- as.integer(length(set))
   e <- as.integer(c(-1, 1,-x, x,-x^2, x^2))
+  p <- as.double(p)
   acc <- array(runif(x^3), rep(x,3))
+  if (!all) set <- set[acc[set] < mean(p)]
+  b <- as.integer(length(set))
+  cls <- rep(0L, max(p)*x^3 + b*all)
+  acc[set] <- 2 
   acc[c(1,x),,] <- acc[,c(1,x),] <- acc[,,c(1,x)] <- 1
-  if (all) {
-    cls <- rep(0L, b + max(p)*x^3) 
-    acc[set] <- 2 
-  } else {
-    cls <- rep(0L, max(p)*x^3) 
-    acc[set <- set[acc[set] < mean(p)]] <- 2
-  }
   cls[seq_along(set)] <- as.integer(set - 1)
   .Call("ssTNd", p, acc, b, e, cls) 
   return(acc)

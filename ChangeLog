@@ -1,3 +1,15 @@
+2012-12-29 Version 0.1-8
+
+  M R/ssa20.R
+  M R/ssa2d.R
+  M R/ssi20.R
+  M R/ssi2d.R
+  M man/SPSL-package.Rd
+  M DESCRIPTION
+  M ChangeLog
+
+Fixed bug in ssa20, ssa2d, ssi20 and ssi2d with the argument "all=FALSE".
+
 2012-12-27 Version 0.1-7
 
   A src/ssTNd.c
