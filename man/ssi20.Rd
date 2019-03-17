@@ -5,13 +5,15 @@
 \code{ssi20()} function provides sites labeling of the isotropic cluster on 2D square lattice with von Neumann (1,0)-neighborhood.
 }
 \usage{
-ssi20(x=33, p=0.592746, set=(x^2+1)/2, all=TRUE)
+ssi20(x=33, p=0.592746, 
+      set=(x^2+1)/2, all=TRUE, shape=c(1,1))
 }
 \arguments{
 \item{x}{a linear dimension of 2D square percolation lattice.}
 \item{p}{the relative fractions \code{(0<p)&(p<1)} of accessible sites (occupation probability) for percolation lattice.}
-\item{set}{a vector containing the linear indexes of sites from initial subset.}
-\item{all}{logical; if \code{all=TRUE}, mark all sites from initial subset; if \code{all=FALSE}, mark accessible sites from initial subset.}
+\item{set}{a vector of linear indexes of a starting sites subset.}
+\item{all}{logical; if \code{all=TRUE}, mark all sites from a starting subset; if \code{all=FALSE}, mark only accessible sites from a starting subset.}
+\item{shape}{a vector with two shape parameters of beta-distributed random variables, weighting the percolation lattice sites.}
 }
 \value{
 \item{acc}{ 
@@ -42,14 +44,12 @@ Forming cluster ends with the exhaustion of accessible sites in von Neumann (1,0
 \concept{von Neumann neighborhood}
 \author{Pavel V. Moskalev}
 \references{
-Moskalev, P.V. and Shitiv, V.V. Mathematical modeling of porous structures. Moscow: Fizmatlit, 2007. 120 pp; in Russian.\cr
-Moskalev, P.V. (2009), Analysis of the percolation cluster structure.
-\emph{Technical Physics}, Vol.54, No.6, pp.763-769.
-}
+[1] Moskalev, P.V. Percolation modeling of porous structures. Moscow: URSS, 2018. 240 pp; in Russian.\cr
+[2] Moskalev, P.V. (2014) Estimates of threshold and strength of percolation clusters on square lattices with (1,d)-neighborhood. \emph{Computer Research and Modeling}, Vol.6, No.3, pp.405–414; in Russian.}
 \examples{
 set.seed(20120507)
 x <- y <- seq(33)
 image(x, y, ssi20(), zlim=c(0,2), 
-main="Isotropic 2D cluster with (1,0)-neighborhood")
+main="Isotropic (1,0)-cluster")
 abline(h=17, lty=2); abline(v=17, lty=2)
 }

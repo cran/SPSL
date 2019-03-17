@@ -1,5 +1,5 @@
-# Load dynamic libraries (shared object files)
-useDynLib(SPSL)
+# Import function "rbeta()" and "runif()" from "stats"
+importFrom("stats", rbeta, runif)
 
 # Export all names
 exportPattern(".")

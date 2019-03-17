@@ -5,14 +5,16 @@
 \code{fssi30()} function calculates the relative frequency distribution of isotropic clusters on 3D square lattice with von Neumann (1,0)-neighborhood.
 }
 \usage{
-fssi30(n=1000, x=33, p=0.311608, set=(x^3+1)/2, all=TRUE)
+fssi30(n=1000, x=33, p=0.311608, 
+       set=(x^3+1)/2, all=TRUE, shape=c(1,1))
 }
 \arguments{
 \item{n}{a sample size.}
 \item{x}{a linear dimension of 3D square percolation lattice.}
 \item{p}{the relative fractions \code{(0<p)&(p<1)} of accessible sites (occupation probability) for percolation lattice.}
-\item{set}{a vector containing the linear indexes of sites from initial subset.}
-\item{all}{logical; if \code{all=TRUE}, mark all sites from initial subset; if \code{all=FALSE}, mark accessible sites from initial subset.}
+\item{set}{a vector of linear indexes of a starting sites subset.}
+\item{all}{logical; if \code{all=TRUE}, mark all sites from a starting subset; if \code{all=FALSE}, mark only accessible sites from a starting subset.}
+\item{shape}{a vector with two shape parameters of beta-distributed random variables, weighting the percolation lattice sites.}
 }
 \value{
 \item{rfq}{ 
@@ -37,11 +39,13 @@ Each element of the matrix \code{frq} is equal to the relative frequency with wh
 \concept{isotropic cluster}
 \concept{von Neumann neighborhood}
 \author{Pavel V. Moskalev <moskalefff@gmail.com>}
+\references{
+[1] Moskalev, P.V. Percolation modeling of porous structures. Moscow: URSS, 2018. 240 pp; in Russian.}
 \examples{
 x <- y <- seq(33)
-rfq <- fssi30(p=0.37)
+rfq <- fssi30(n=200, p=0.37)
 image(x, y, rfq[,,17], cex.main=1, 
-main="Relative frequency distribution in the z=17 slice\n of isotropic 3D clusters with (1,0)-neighborhood")
+main="Frequencies in the z=17 slice of isotropic (1,0)-clusters")
 contour(x, y, rfq[,,17], levels=c(0.2,0.25,0.3), add=TRUE)
 abline(h=17, lty=2); abline(v=17, lty=2)
 }

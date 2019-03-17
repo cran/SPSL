@@ -1,3 +1,37 @@
+2019-03-17 Version 0.1-9
+
+  R src/ssTNd.c
+  M R/ssa20.R
+  M R/ssa2d.R
+  M R/ssi20.R
+  M R/ssi2d.R
+  M R/fssa20.R
+  M R/fssa2d.R
+  M R/fssi20.R
+  M R/fssi2d.R
+  M man/ssa20.Rd
+  M man/ssa2d.Rd
+  M man/ssa30.Rd
+  M man/ssa3d.Rd
+  M man/ssi20.Rd
+  M man/ssi2d.Rd
+  M man/ssi30.Rd
+  M man/ssi3d.Rd
+  A man/fssa20.Rd
+  A man/fssa2d.Rd
+  A man/fssa30.Rd
+  A man/fssa3d.Rd
+  A man/fssi20.Rd
+  A man/fssi2d.Rd
+  A man/fssi30.Rd
+  A man/fssi3d.Rd
+  M man/SPSL-package.Rd
+  M DESCRIPTION
+  M ChangeLog
+
+Compiling C-code have been removed.
+All existing functions have been modified to control the distribution functions of random variables weighting the percolation lattice sites.
+
 2012-12-29 Version 0.1-8
 
   M R/ssa20.R
@@ -55,8 +89,8 @@ Modified 4 existing functions.
   M DESCRIPTION
   A ChangeLog
 
-Added 8 new functions and documentation. 
-Updated existing documentation and examples.
+Adding 8 new functions and documentation. 
+Updating existing documentation and examples.
 
 2012-05-14 Version 0.1-5
 

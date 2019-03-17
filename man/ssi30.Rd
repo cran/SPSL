@@ -5,13 +5,15 @@
 \code{ssi30()} function provides sites labeling of the isotropic cluster on 3D square lattice with von Neumann (1,0)-neighborhood.
 }
 \usage{
-ssi30(x=33, p=0.311608, set=(x^3+1)/2, all=TRUE)
+ssi30(x=33, p=0.311608, 
+      set=(x^3+1)/2, all=TRUE, shape=c(1,1))
 }
 \arguments{
 \item{x}{a linear dimension of 3D square percolation lattice.}
 \item{p}{the relative fractions \code{(0<p)&(p<1)} of accessible sites (occupation probability) for percolation lattice.}
-\item{set}{a vector containing the linear indexes of sites from initial subset.}
-\item{all}{logical; if \code{all=TRUE}, mark all sites from initial subset; if \code{all=FALSE}, mark accessible sites from initial subset.}
+\item{set}{a vector of linear indexes of a starting sites subset.}
+\item{all}{logical; if \code{all=TRUE}, mark all sites from a starting subset; if \code{all=FALSE}, mark only accessible sites from a starting subset.}
+\item{shape}{a vector with two shape parameters of beta-distributed random variables, weighting the percolation lattice sites.}
 }
 \value{
 \item{acc}{ 
@@ -41,6 +43,9 @@ Forming cluster ends with the exhaustion of accessible sites in von Neumann (1,0
 \concept{isotropic cluster}
 \concept{von Neumann neighborhood}
 \author{Pavel V. Moskalev}
+\references{
+[1] Moskalev, P.V. Percolation modeling of porous structures. Moscow: URSS, 2018. 240 pp; in Russian.\cr
+[2] Moskalev, P.V. (2013) The structure of site percolation models on three-dimensional square lattices. \emph{Computer Research and Modeling}, Vol.5, No.4, pp.607–622; in Russian.}
 \examples{
 # Example No.1. Axonometric projection of 3D cluster
 require(lattice)
@@ -50,13 +55,13 @@ cls <- which(ssi30(p=.285)>1, arr.ind=TRUE)
 cloud(cls[,3] ~ cls[,1]*cls[,2],
 xlim=range(x), ylim=range(y), zlim=range(z), 
 col=rgb(1,0,0,0.4), xlab="x", ylab="y", zlab="z", main.cex=1,
-main="Axonometric projection of\n an isotropic 3D cluster with (1,0)-neighborhood")
+main="Isotropic (1,0)-cluster")
 
 # Example No.2. Z=17 slice of 3D cluster
 set.seed(20120507)
 cls <- ssi30(p=.285)
 x <- y <- z <- seq(33)
 image(x, y, cls[,,17], zlim=c(0,2), cex.main=1, 
-main="Z=17 slice of an isotropic 3D cluster with (1,0)-neighborhood")
+main="Z=17 slice of an isotropic (1,0)-cluster")
 abline(h=17, lty=2); abline(v=17, lty=2)
 }

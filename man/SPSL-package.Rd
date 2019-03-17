@@ -2,16 +2,16 @@
 \alias{SPSL-package}
 \alias{SPSL}
 \docType{package}
-\title{Site Percolation on Square Lattice (SPSL)}
+\title{Site Percolation on Square Lattices (SPSL)}
 \description{
-SPSL package provides functionality for labeling of percolation clusters on 2D & 3D square lattice with various lattice size, relative fraction of accessible sites (occupation probability), iso- & anisotropy, von Neumann & Moore (1,d)-neighborhood.
+Provides basic functionality for labeling iso- & anisotropic percolation clusters on 2D & 3D square lattices with various lattice sizes, occupation probabilities, von Neumann & Moore (1,d)-neighborhoods, and random variables weighting the percolation lattice sites.
 }
 \details{
 \tabular{ll}{
 Package: \tab SPSL\cr
 Type: \tab Package\cr
-Version: \tab 0.1-8\cr
-Date: \tab 2012-12-29\cr
+Version: \tab 0.1-9\cr
+Date: \tab 2019-03-17\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 }
@@ -33,10 +33,6 @@ LazyLoad: \tab yes\cr
 }
 \author{Pavel V. Moskalev <moskalefff@gmail.com>}
 \references{
-Moskalev, P.V. and Shitov, V.V. Mathematical modeling of porous structures. Moscow: Fizmatlit, 2007. 120 pp; in Russian.\cr
-Moskalev, P.V. (2009), Analysis of the percolation cluster structure.
-\emph{Technical Physics}, Vol.54, No.6, pp.763-769.\cr
-Moskalev, P.V., Grebennikov, K.V. and Shitov, V.V. (2011),
-Statistical estimation of percolation cluster parameters.
-\emph{Proceedings of Voronezh State University. Series: Systems Analysis and Information Technologies}, No.1 (January-June), pp.29-35; arXiv:1105.2334v1 [cond-mat.stat-mech]; in Russian.
-}
+[1] Moskalev, P.V. Percolation modeling of porous structures. Moscow: URSS, 2018. 240 pp; in Russian.\cr
+[2] Moskalev, P.V. (2014) Estimates of threshold and strength of percolation clusters on square lattices with (1,d)-neighborhood. \emph{Computer Research and Modeling}, Vol.6, No.3, pp.405–414; in Russian.\cr
+[3] Moskalev, P.V. (2013) The structure of site percolation models on three-dimensional square lattices. \emph{Computer Research and Modeling}, Vol.5, No.4, pp.607–622; in Russian.}

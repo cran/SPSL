@@ -5,13 +5,15 @@
 \code{ssa20()} function provides sites labeling of the anisotropic cluster on 2D square lattice with von Neumann (1,0)-neighborhood.
 }
 \usage{
-ssa20(x=33, p=runif(4, max=0.9), set=(x^2+1)/2, all=TRUE)
+ssa20(x=33, p=runif(4, max=0.9), 
+      set=(x^2+1)/2, all=TRUE, shape=c(1,1))
 }
 \arguments{
 \item{x}{a linear dimension of 2D square percolation lattice.}
 \item{p}{a vector of relative fractions \code{(0<p)&(p<1)} of accessible sites (occupation probability) for lattice directions: \code{(-x,+x,-y,+y)}.}
-\item{set}{a vector of linear indexes of initial sites subset.}
-\item{all}{logical; if \code{all=TRUE}, mark all sites from initial subset; if \code{all=FALSE}, mark accessible sites from initial subset.}
+\item{set}{a vector of linear indexes of a starting sites subset.}
+\item{all}{logical; if \code{all=TRUE}, mark all sites from a starting subset; if \code{all=FALSE}, mark only accessible sites from a starting subset.}
+\item{shape}{a vector with two shape parameters of beta-distributed random variables, weighting the percolation lattice sites.}
 }
 \value{
 \item{acc}{ 
@@ -42,12 +44,11 @@ Forming cluster ends with the exhaustion of accessible sites in von Neumann (1,0
 \concept{von Neumann neighborhood}
 \author{Pavel V. Moskalev}
 \references{
-Moskalev, P.V. and Shitov, V.V. Mathematical modeling of porous structures. Moscow: Fizmatlit, 2007. 120 pp; in Russian.
-}
+[1] Moskalev, P.V. Percolation modeling of porous structures. Moscow: URSS, 2018. 240 pp; in Russian.}
 \examples{
 set.seed(20120507)
 x <- y <- seq(33)
 image(x, y, ssa20(), zlim=c(0,2), 
-main="Anisotropic 2D cluster with (1,0)-neighborhood")
+main="Anisotropic (1,0)-cluster")
 abline(h=17, lty=2); abline(v=17, lty=2)
 }

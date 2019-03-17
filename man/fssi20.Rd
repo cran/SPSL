@@ -5,14 +5,16 @@
 \code{fssi20()} function calculates the relative frequency distribution of isotropic clusters on 2D square lattice with von Neumann (1,0)-neighborhood.
 }
 \usage{
-fssi20(n=1000, x=33, p=0.592746, set=(x^2+1)/2, all=TRUE)
+fssi20(n=1000, x=33, p=0.592746, 
+       set=(x^2+1)/2, all=TRUE, shape=c(1,1))
 }
 \arguments{
 \item{n}{a sample size.}
 \item{x}{a linear dimension of 2D square percolation lattice.}
 \item{p}{the relative fractions \code{(0<p)&(p<1)} of accessible sites (occupation probability) for percolation lattice.}
-\item{set}{a vector containing the linear indexes of sites from initial subset.}
-\item{all}{logical; if \code{all=TRUE}, mark all sites from initial subset; if \code{all=FALSE}, mark accessible sites from initial subset.}
+\item{set}{a vector of linear indexes of a starting sites subset.}
+\item{all}{logical; if \code{all=TRUE}, mark all sites from a starting subset; if \code{all=FALSE}, mark only accessible sites from a starting subset.}
+\item{shape}{a vector with two shape parameters of beta-distributed random variables, weighting the percolation lattice sites.}
 }
 \value{
 \item{rfq}{ 
@@ -38,14 +40,12 @@ Each element of the matrix \code{frq} is equal to the relative frequency with wh
 \concept{von Neumann neighborhood}
 \author{Pavel V. Moskalev}
 \references{
-Moskalev, P.V., Grebennikov, K.V. and Shitov, V.V. (2011),
-Statistical estimation of percolation cluster parameters.
-\emph{Proceedings of Voronezh State University. Series: Systems Analysis and Information Technologies}, No.1 (January-June), pp.29-35; arXiv:1105.2334v1 [cond-mat.stat-mech]; in Russian.
-}
+[1] Moskalev, P.V. Percolation modeling of porous structures. Moscow: URSS, 2018. 240 pp; in Russian.\cr
+[2] Moskalev, P.V. (2014) Estimates of threshold and strength of percolation clusters on square lattices with (1,d)-neighborhood. \emph{Computer Research and Modeling}, Vol.6, No.3, pp.405–414; in Russian.}
 \examples{
 x <- y <- seq(33) 
-image(x, y, rfq <- fssi20(), cex.main=1,
-main="Relative frequency distribution of\n isotropic 2D clusters with (1,0)-neighborhood")
+image(x, y, rfq <- fssi20(n=200), cex.main=1,
+main="Frequencies of isotropic (1,0)-clusters")
 contour(x, y, rfq, levels=seq(.2,.3,.05), add=TRUE)
 abline(h=17, lty=2); abline(v=17, lty=2)
 }

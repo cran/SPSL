@@ -5,14 +5,16 @@
 \code{fssa30()} function calculates the relative frequency distribution of anisotropic clusters on 3D square lattice with von Neumann (1,0)-neighborhood.
 }
 \usage{
-fssa30(n=1000, x=33, p=runif(6, max=0.6), set=(x^3+1)/2, all=TRUE)
+fssa30(n=1000, x=33, p=runif(6, max=0.6), 
+       set=(x^3+1)/2, all=TRUE, shape=c(1,1))
 }
 \arguments{
 \item{n}{a sample size.}
 \item{x}{a linear dimension of 3D square percolation lattice.}
 \item{p}{a vector of relative fractions \code{(0<p)&(p<1)} of accessible sites (occupation probability) for lattice directions: \code{(-x,+x,-y,+y,-z,+z)}.}
-\item{set}{a vector containing the linear indexes of sites from initial subset.}
-\item{all}{logical; if \code{all=TRUE}, mark all sites from initial subset; if \code{all=FALSE}, mark accessible sites from initial subset.}
+\item{set}{a vector of linear indexes of a starting sites subset.}
+\item{all}{logical; if \code{all=TRUE}, mark all sites from a starting subset; if \code{all=FALSE}, mark only accessible sites from a starting subset.}
+\item{shape}{a vector with two shape parameters of beta-distributed random variables, weighting the percolation lattice sites.}
 }
 \value{
 \item{rfq}{ 
@@ -37,11 +39,13 @@ Each element of the 3D matrix \code{frq} is equal to the relative frequency with
 \concept{isotropic cluster}
 \concept{von Neumann neighborhood}
 \author{Pavel V. Moskalev <moskalefff@gmail.com>}
+\references{
+[1] Moskalev, P.V. Percolation modeling of porous structures. Moscow: URSS, 2018. 240 pp; in Russian.}
 \examples{
 x <- y <- seq(33)
-rfq <- fssa30(p=.17*c(.5,3,.5,1.5,1,.5))
+rfq <- fssa30(n=200, p=.17*c(.5,3,.5,1.5,1,.5))
 image(x, y, rfq[,,17], cex.main=1,
-main="Relative frequency distribution in the z=17 slice\n of anisotropic 3D clusters with (1,0)-neighborhood")
+main="Frequencies in z=17 slice of anisotropic (1,0)-clusters")
 contour(x, y, rfq[,,17], levels=seq(.05,.3,.05), add=TRUE)
 abline(h=17, lty=2); abline(v=17, lty=2)
 }
